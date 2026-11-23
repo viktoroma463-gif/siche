@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  --font-sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --color-paper: #f3ebdd;
+  --color-paper-2: #e9dfcd;
+  --color-sheet: #fbf7f0;
+  --color-ink: #1c1814;
+  --color-ink-soft: #5a5248;
+  --color-cinnabar: #b83a2a;
+  --color-cinnabar-soft: #d9a39a;
+  --color-inkblue: #1f3a5f;
+  --color-moss: #3a5a40;
+  --color-gold: #c4a35a;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(rgba(28, 24, 20, 0.035) 0.6px, transparent 0.6px),
+    linear-gradient(180deg, #f7f1e6 0%, #f3ebdd 40%, #efe4d2 100%);
+  background-size: 3px 3px, 100% 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.paper-card {
+  background: var(--color-sheet);
+  border: 1px solid rgba(28, 24, 20, 0.12);
+  box-shadow: 0 10px 30px rgba(28, 24, 20, 0.06);
+}
+
+.seal {
+  font-family: var(--font-serif);
+  color: var(--color-cinnabar);
+  border: 2px solid var(--color-cinnabar);
+  writing-mode: horizontal-tb;
+}
+
+.modal-backdrop {
+  background: rgba(28, 24, 20, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.splash-stage {
+  background:
+    radial-gradient(rgba(28, 24, 20, 0.03) 0.6px, transparent 0.6px),
+    linear-gradient(180deg, #f7f1e6 0%, #f3ebdd 45%, #ece1cf 100%);
+  background-size: 3px 3px, 100% 100%;
+}
+
+.splash-seal {
+  display: grid;
+  place-items: center;
+  width: 128px;
+  height: 128px;
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-cinnabar);
+  border: 3px solid var(--color-cinnabar);
+  background: rgba(251, 247, 240, 0.72);
+}
+
+@keyframes risk-flash {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(184, 58, 42, 0.12);
+  }
+}
+
+.risk-flash {
+  animation: risk-flash 0.5s ease-in-out 4;
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.plan-drawer {
+  animation: drawer-in 0.2s ease-out;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.toast {
+  animation: toast-in 0.22s ease-out;
+}

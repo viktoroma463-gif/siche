@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: siche
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: SICHE_DEEPSEEK_API_KEY
+        sync: false
+      - key: SICHE_DEEPSEEK_MODEL
+        value: deepseek-flash
+      - key: SICHE_DB_PATH
+        value: /data/siche.db
+    disk:
+      name: siche-data
+      mountPath: /data
+      sizeGB: 1
