@@ -12,11 +12,24 @@
 
 ---
 
+## 零、找不到入口时先看这里
+
+云托管在「**云开发 CloudBase**」里，不在「云服务器 CVM / 轻量应用服务器」列表里。
+
+- 云开发控制台：<https://console.cloud.tencent.com/tcb>
+- 云托管产品页：<https://cloud.tencent.com/product/cloudbaserun>
+- 新版云开发控制台：<https://tcb.cloud.tencent.com/dev>
+
+路径：登录腾讯云 → 控制台 → 顶部搜索「云开发」或「云托管」→ 云开发 CloudBase → 创建/选择环境 → 左侧「云托管」→ 新建服务。
+
+如果左侧没有「云托管」：在控制台顶部搜索「云托管」，或在云开发环境的「扩展能力/更多」里找「云托管 CloudBase Run」。
+
 ## 一、准备
 
 1. 腾讯云账号，并完成实名认证。
-2. 开通「云托管 / CloudBase 云托管」服务（控制台搜索“云托管”或“CloudBase”）。
-3. 你的 DeepSeek API Key。
+2. 开通「云开发 CloudBase」并创建一个环境（按量计费；地域选上海/广州即可）。
+3. 进入该环境的「云托管」页面。
+4. 你的 DeepSeek API Key。
 
 ---
 
@@ -26,16 +39,19 @@
 2. 部署方式选择 **本地代码 / 代码包上传**。
 3. 上传 `Desktop\思拆-腾讯云部署包.zip`。
 4. 构建配置：
-   - Dockerfile 路径：`Dockerfile.tencent`
-   - 构建上下文：根目录（默认）
-   - 服务端口：`8000`
+   - 上传方式：本地代码/代码包
+   - 上传 `Desktop\思拆-腾讯云部署包.zip`（zip 根目录就是 Dockerfile.tencent，**不要再多套一层文件夹**）
+   - Dockerfile 名称：`Dockerfile.tencent`
+   - Dockerfile 目录/目标目录：留空（根目录）
+   - 监听端口/服务端口：`8000`
 5. 环境变量：
    | 变量 | 值 |
    |---|---|
    | `SICHE_DEEPSEEK_API_KEY` | 你的 DeepSeek Key |
    | `SICHE_DEEPSEEK_MODEL` | `deepseek-flash` |
    | `SICHE_DB_PATH` | 有持久存储时填 `/data/siche.db`；没有就填 `/app/siche.db` |
-   | `PORT` | `8000`（如果控制台要求指定端口） |
+
+   > 腾讯云专用镜像固定监听 **8000**，不需要设置 `PORT`；控制台的「监听端口/服务端口」填 `8000`。
 6. 点击 **部署 / 发布**，等待构建完成（首次约 5–15 分钟）。
 7. 在服务详情里找到默认公网域名（通常是 `https://xxx.service.tcloudbase.com` 之类），浏览器打开。
 8. 健康检查地址：`https://你的域名/api/health`，应返回 `{"ok":true,...}`。
