@@ -146,6 +146,14 @@ npm run lint
 
 生成 `dist\思拆\思拆.exe` 与 `Desktop\思拆-绿色版.zip`。接收方解压整个文件夹，把 `.env.example` 复制为 `.env` 并填入自己的密钥，双击 `思拆.exe`。
 
+## 部署到公网
+
+见 [`DEPLOY.md`](DEPLOY.md)。已提供 `Dockerfile`、`render.yaml`、`railway.json`。
+
+- 永久网址需要你自己的 GitHub + Render/Railway 账号；我无法替你注册或登录。
+- Render 免费实例没有持久磁盘：SQLite 会在重新部署/休眠后重置；需要持久化请用 Starter + 1GB 磁盘。
+- 当前没有访问密码，拿到网址的人都能使用你的 DeepSeek 额度；建议设置消费上限，不要公开贴出。
+
 ## Windows 安装包
 
 在开发机上用 Inno Setup 6 编译 `installer\思拆.iss`：
