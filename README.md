@@ -148,10 +148,12 @@ npm run lint
 
 ## 部署到公网
 
-见 [`DEPLOY.md`](DEPLOY.md)。已提供 `Dockerfile`、`render.yaml`、`railway.json`。
+见 [`DEPLOY.md`](DEPLOY.md) 与 [`DEPLOY-TENCENT.md`](DEPLOY-TENCENT.md)。已提供 `Dockerfile`、`Dockerfile.tencent`、`render.yaml`、`railway.json`。
 
-- 永久网址需要你自己的 GitHub + Render/Railway 账号；我无法替你注册或登录。
+- 腾讯云云托管上传包：`Desktop\思拆-腾讯云部署包.zip`（根目录含 `Dockerfile.tencent`、`backend`、`frontend`）。
+- 永久网址需要你自己的云账号（腾讯云/阿里云/Render/Railway）；我无法替你注册或登录。
 - Render 免费实例没有持久磁盘：SQLite 会在重新部署/休眠后重置；需要持久化请用 Starter + 1GB 磁盘。
+- 云托管默认无状态容器；没有挂载 CFS/持久卷时 SQLite 会随实例重建丢失，重要会话先导出。
 - 当前没有访问密码，拿到网址的人都能使用你的 DeepSeek 额度；建议设置消费上限，不要公开贴出。
 
 ## Windows 安装包

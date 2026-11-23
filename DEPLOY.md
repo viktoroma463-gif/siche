@@ -2,6 +2,8 @@
 
 这个应用是 **FastAPI + React + SQLite + DeepSeek** 的全栈应用，不能只传静态文件。要得到永久网址，需要一台一直运行的服务器。
 
+> 国内腾讯云方案见 [`DEPLOY-TENCENT.md`](DEPLOY-TENCENT.md)，上传包为 `Desktop\思拆-腾讯云部署包.zip`，无需国际信用卡。
+
 本目录已经准备好：
 
 - `Dockerfile`：多阶段构建前端 + 后端，单容器运行；
