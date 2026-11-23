@@ -4,9 +4,10 @@
 
 本目录已准备好：
 
-- `Dockerfile.tencent`：腾讯云专用，基础镜像、npm、pip 都走国内镜像，构建更快；
+- `Dockerfile.tencent`：固定监听 8000，使用官方源；
+- `Dockerfile.tencent80`：固定监听 80，使用官方源；
 - `Dockerfile`：通用 Dockerfile（Render/Railway 用）；
-- 上传包：`Desktop\思拆-腾讯云部署包.zip`（根目录就是 Dockerfile.tencent、backend、frontend，可直接上传）。
+- 上传包：`Desktop\思拆-腾讯云部署包.zip`（根目录含 Dockerfile.tencent、Dockerfile.tencent80、backend、frontend，可直接上传）。
 
 > 当前没有访问密码。拿到网址的人都能使用你的 DeepSeek 额度。建议在 DeepSeek 控制台设置消费上限，不要把网址公开贴出。
 
@@ -109,8 +110,8 @@
 ## 六、常见问题
 
 **构建失败**
-- 确认 Dockerfile 路径是 `Dockerfile.tencent`（不是 `Dockerfile`）。
-- 看构建日志；常见原因是 npm/pip 网络。`Dockerfile.tencent` 已使用国内镜像。
+- 确认 Dockerfile 名称与你要用的端口匹配：固定 80 用 `Dockerfile.tencent80`，固定 8000 用 `Dockerfile.tencent`。
+- 看构建日志；`Dockerfile.tencent` / `Dockerfile.tencent80` 使用官方源（腾讯云构建环境已验证可访问）。如果某个源失败，按日志换源。
 - 如果 `npm ci` 报 lockfile 不一致：本地执行 `npm install` 后重新打包/提交。
 
 **打开 502 / 503**

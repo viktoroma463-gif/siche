@@ -1,26 +1,19 @@
-# 腾讯云云托管专用：固定监听 80，服务端口填 80 即可，无需 PORT 环境变量。
-ARG NODE_IMAGE=docker.m.daocloud.io/library/node:22-alpine
-ARG PYTHON_IMAGE=docker.m.daocloud.io/library/python:3.12-slim
-
-FROM ${NODE_IMAGE} AS web
+# 腾讯云云托管专用：固定监听 80，使用官方源（腾讯云构建环境已验证可访问）。
+FROM node:22-alpine AS web
 WORKDIR /web
-ARG NPM_REGISTRY=https://registry.npmmirror.com
 COPY frontend/package.json frontend/package-lock.json ./
-RUN npm config set registry ${NPM_REGISTRY} && \
-    sed -i "s|https://registry.npmjs.org|${NPM_REGISTRY}|g" package-lock.json && \
-    npm ci
+RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
-FROM ${PYTHON_IMAGE}
-ARG PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     SICHE_WEB_DIR=/app/web
 
 WORKDIR /app
 COPY backend/requirements.txt ./backend/requirements.txt
-RUN pip install --no-cache-dir -i ${PIP_INDEX_URL} -r backend/requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
 COPY backend/app ./backend/app
 COPY --from=web /web/dist ./web
