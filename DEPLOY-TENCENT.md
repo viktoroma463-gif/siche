@@ -44,6 +44,8 @@
    - Dockerfile 名称：`Dockerfile.tencent`
    - Dockerfile 目录/目标目录：留空（根目录）
    - 监听端口/服务端口：`8000`
+
+   > **如果你必须用 80 端口**：Dockerfile 名称改为 `Dockerfile.tencent80`，服务端口填 `80`，不需要设置 `PORT`。这个文件固定监听 80，不会出现服务端口和容器端口错位。
 5. 环境变量：
    | 变量 | 值 |
    |---|---|
